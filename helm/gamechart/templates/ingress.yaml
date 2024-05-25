@@ -7,6 +7,10 @@ metadata:
   annotations:
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
+  tls:
+  - hosts:
+      - "{{ .Values.ingress.host | trimPrefix "http://" }}"
+    secretName: your-domain-tls
   rules:
     - host: "{{ .Values.ingress.host | trimPrefix "http://" }}"
       http:
