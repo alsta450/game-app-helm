@@ -1,0 +1,40 @@
+# Secrets.yaml
+secrets:
+  client:
+    secret: "secret"
+    id: "game-auth"
+
+# config-map.yaml
+data:
+  config:
+    database:
+      url: "jdbc:postgresql://postgres-svc:5432/postgres"
+
+# ingress.yaml
+ingress:
+  name: keycloakingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  host: "localhost"
+  path: "/"
+  gamePath: "/randomNumber"
+  serviceName: game-svc
+  keycloakServicePort: 8080
+  gameServicePort: 8080
+  tls: false
+  tlsSecret: local-certs-secret
+
+# postgres-spring-secrets.yaml
+postgres:
+  dbUser: "postgres"
+  dbPassword: "secret"
+  containerPort: 5432
+
+# game
+game:
+  image: game-app:1.0.1
+  service:
+    type: ClusterIP
+    port: 8080
+    targetPort: 8080
