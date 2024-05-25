@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master  # or any other branch
-    paths:
-      - 'helm/gamechart/**'  # Adjust path to where your Helm chart is located
+    # paths:
+    #   - 'helm/gamechart/**'  # Adjust path to where your Helm chart is located
 
 jobs:
   build:
