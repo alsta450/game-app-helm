@@ -26,21 +26,20 @@ data:
 #   tlsSecret: local-certs-secret
 
 ingress:
-  name: keycloakingress
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /
-  hosts:
-    - host: hardwarecrash.duckdns.org
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-          port: 80
-  tls: false
-    # - hosts:
-    #     - hardwarecrash.duckdns.org
-    #   secretName: chart-example-tls
+  # Assuming you're using hostname based routing; if not, you can omit the 'host' field
+  host: "http://hardwarecrash.duckdns.org"
+  paths:
+    - path: /randomNumber
+      pathType: ImplementationSpecific
+      backend:
+        service:
+          name: game
+          port:
+            number: 8080
 
 # postgres-spring-secrets.yaml
 postgres:
