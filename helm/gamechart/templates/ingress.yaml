@@ -4,17 +4,11 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   namespace: keycloak
-  labels:
-    {{- include "mychart.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
   rules:
-    {{- if .Values.ingress.host }}
-    - host: {{ .Values.ingress.host }}
-    {{- end }}
+    - host: "{{ .Values.ingress.host | trimPrefix "http://" }}"
       http:
         paths:
           {{- range .Values.ingress.paths }}
@@ -22,8 +16,8 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $.Values.game.service.name }}
+                name: {{ .backend.service.name }}
                 port:
-                  number: {{ $.Values.game.service.port }}
+                  number: {{ .backend.service.port.number }}
           {{- end }}
 {{- end }}
