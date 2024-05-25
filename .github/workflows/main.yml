@@ -3,9 +3,9 @@ name: Package and Deploy Helm Chart
 on:
   push:
     branches:
-      - master  # or any other branch
-    # paths:
-    #   - 'helm/gamechart/**'  # Adjust path to where your Helm chart is located
+      - master  
+    paths:
+      - 'helm/gamechart/**'  
 
 jobs:
   build:
