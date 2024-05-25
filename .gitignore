@@ -1,0 +1,6 @@
+app-values.yaml
+argocd.tf
+main.tf
+outputs.tf
+services.tf
+vars.tf

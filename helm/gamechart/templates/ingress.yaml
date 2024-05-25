@@ -2,34 +2,29 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Values.ingress.name }}
-  namespace: keycloak
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/auth-signin: "http://$host/oauth2/start"
-    nginx.ingress.kubernetes.io/auth-url: "http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth"
+    nginx.ingress.kubernetes.io/rewrite-target: /  # Ensures that the navigation is rewritten to hit the root of the backend service
 spec:
   rules:
-    - http:
+    - host: "{{ .Values.ingress.host }}"
+      http:
         paths:
           - path: {{ .Values.ingress.gamePath }}
             pathType: Prefix
             backend:
               service:
-                name: game-svc
+                name: {{ .Values.ingress.serviceName }}
                 port:
                   number: {{ .Values.ingress.gameServicePort }}
-    - http:
-        paths:
-          - path: /
+          - path: {{ .Values.ingress.path }}
             pathType: Prefix
             backend:
               service:
-                name: oauth2-proxy
+                name: {{ .Values.ingress.serviceName }}
                 port:
-                  number: 4180
-  {{- if .Values.ingress.tls }}
+                  number: {{ .Values.ingress.gameServicePort }}
   tls:
     - hosts:
-        - {{ .Values.ingress.host }}
+        - "{{ .Values.ingress.host }}"
       secretName: {{ .Values.ingress.tlsSecret }}
-  {{- end }}
