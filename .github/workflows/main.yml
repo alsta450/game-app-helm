@@ -27,9 +27,10 @@ jobs:
       run: |
         cp helm/gamechart/*.tgz gh-pages/
         cd gh-pages
-        REPO_URL="https://${{ github.repository_owner }}.github.io/${GITHUB_REPOSITORY#*/}"
-        echo "Repository URL: $REPO_URL"
-        helm repo index . --url $REPO_URL
+        # Extract the repository name using shell parameter expansion
+        REPO_NAME="${GITHUB_REPOSITORY#*/}"
+        # Use the extracted repository name in the Helm repo index command
+        helm repo index . --url "https://${{ github.repository_owner }}.github.io/$REPO_NAME"
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add .
