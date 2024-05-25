@@ -36,10 +36,10 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
           port: 80
-  tls:
-    - hosts:
-        - hardwarecrash.duckdns.org
-      secretName: chart-example-tls
+  tls: false
+    # - hosts:
+    #     - hardwarecrash.duckdns.org
+    #   secretName: chart-example-tls
 
 # postgres-spring-secrets.yaml
 postgres:
