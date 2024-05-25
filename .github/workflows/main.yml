@@ -21,7 +21,7 @@ jobs:
     - name: Package Helm Chart
       run: |
         cd helm/gamechart/  # Navigate to the chart directory
-        helm package 
+        helm package .
         
     - name: Update Helm repository index
       run: |
