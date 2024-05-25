@@ -5,7 +5,7 @@ on:
     branches:
       - master  # or any other branch
     paths:
-      - 'chart/**'  # Adjust path to where your Helm chart is located
+      - 'helm/gamechart/**'  # Adjust path to where your Helm chart is located
 
 jobs:
   build:
