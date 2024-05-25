@@ -32,7 +32,9 @@ jobs:
         git config user.email github-actions@github.com
         git add .
         git commit -m "Update Helm chart"
-        git push    
+        git push  
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Checkout gh-pages branch
       uses: actions/checkout@v2
