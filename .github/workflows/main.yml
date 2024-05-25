@@ -36,11 +36,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Checkout gh-pages branch
+    - name: Checkout charts branch
       uses: actions/checkout@v2
       with:
-        ref: 'gh-pages'  # Switch to gh-pages branch
-        path: 'gh-pages'  # Checkout to a different directory
+        ref: 'charts'  # Switch to gh-pages branch
+        path: 'charts'  # Checkout to a different directory
         
     - name: Archive Helm Chart
       uses: actions/upload-artifact@v2
