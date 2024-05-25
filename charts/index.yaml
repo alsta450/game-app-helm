@@ -3,12 +3,12 @@ entries:
   gamechart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-25T20:13:12.514396356Z"
+    created: "2024-05-25T20:18:58.577301288Z"
     description: A Helm chart for Kubernetes
-    digest: 3a58f358071f81ac527021803e536c417955f38cd4b9f497208bf14e0dc26f8d
+    digest: c978b9bb543eae135b60990dedca836378d6e27935572ffd2c1fa549b47caaaa
     name: gamechart
     type: application
     urls:
     - https://alsta450.github.io/game-app-helm/charts/gamechart-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-25T20:13:12.513969001Z"
+generated: "2024-05-25T20:18:58.576164545Z"
