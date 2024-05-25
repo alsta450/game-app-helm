@@ -4,3 +4,7 @@ main.tf
 outputs.tf
 services.tf
 vars.tf
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/providers/registry.opentofu.org
