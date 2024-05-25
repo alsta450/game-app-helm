@@ -26,7 +26,7 @@ jobs:
     - name: Update Helm repository index
       run: |
         cp helm/gamechart/*.tgz charts/
-        cd gh-pages
+        cd charts
         helm repo index . --url https://${{ github.repository_owner }}.github.io/game-app-helm
         git config user.name github-actions
         git config user.email github-actions@github.com
