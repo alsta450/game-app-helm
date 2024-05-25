@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master  
-    paths:
-      - 'helm/gamechart/**'  
+    # paths:
+    #   - 'helm/gamechart/**'  
 
 jobs:
   build:
