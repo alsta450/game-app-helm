@@ -1,0 +1,32 @@
+name: Package and Deploy Helm Chart
+
+on:
+  push:
+    branches:
+      - master  # or any other branch
+    paths:
+      - 'helm/gamechart/**'  # Adjust path to where your Helm chart is located
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: '3.x'
+
+    - name: Package Helm Chart
+      run: |
+        cd helm/gamechart  # Navigate to the chart directory
+        helm package .
+
+    - name: Archive Helm Chart
+      uses: actions/upload-artifact@v2
+      with:
+        name: packaged-chart
+        path: '*.tgz'
