@@ -48,7 +48,7 @@ postgres:
   dbPassword: "secret"
   containerPort: 5432
 
-game
+#game
 game:
   image: game-app:1.0.1
   service:
