@@ -29,16 +29,15 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  # Assuming you're using hostname based routing; if not, you can omit the 'host' field
-  host: "http://hardwarecrash.duckdns.org"
+  host: "hardwarecrash.duckdns.org"  # Removed 'http://'
   paths:
-    - path: /randomNumber
+    - path: "/randomNumber"
       pathType: ImplementationSpecific
       backend:
         service:
-          name: game
+          name: "game"
           port:
             number: 8080
 
@@ -48,7 +47,7 @@ postgres:
   dbPassword: "secret"
   containerPort: 5432
 
-#game
+# game
 game:
   image: game-app:1.0.1
   service:
