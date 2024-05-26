@@ -49,9 +49,9 @@ postgres:
   containerPort: 5432
 
 # game
-game:
-  image: game-app:1.0.1
-  service:
-    type: ClusterIP
-    port: 8080
-    targetPort: 8080
+# game:
+#   image: game-app:1.0.1
+#   service:
+#     type: ClusterIP
+#     port: 8080
+#     targetPort: 8080
