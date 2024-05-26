@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: game-app
+  namespace: keycloak
   labels:
     app: game-app
 spec:
-  replicas: 1  # Adjust the number of replicas based on your requirements
+  replicas: 1  # You can adjust the number of replicas based on your requirements
   selector:
     matchLabels:
       app: game-app
@@ -14,16 +15,29 @@ spec:
       labels:
         app: game-app
     spec:
-      # initContainers:
-      #   - name: wait-for-db
-      #     image: busybox
-      #     command: ['sh', '-c', 'until nc -z postgres-svc 5432; do echo waiting for db; sleep 2; done;']
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z postgres-svc 5432; do echo waiting for db; sleep 2; done;' ]
+        - name: wait-for-keycloak
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z keycloak 8080; do echo waiting for keycloak; sleep 2; done;' ]
       containers:
         - image: {{ .Values.game.image }}
           name: game-app
           ports:
             - containerPort: 8080
           env:
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GAME_AUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-secret
+                  key: client-secret
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GAME_AUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spring-secret
+                  key: client-id
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -34,10 +48,28 @@ spec:
                 secretKeyRef:
                   name: spring-secret
                   key: database_password
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GAME_AUTH_REDIRECT_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: REDIRECT_URL
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-config
+                  key: ISSUER_URI
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 configMapKeyRef:
                   name: spring-config
                   key: DATABASE_URL
+          volumeMounts:
+            - name: keycloak-truststore
+              mountPath: /etc/ssl/certs
+              readOnly: true
+      volumes:
+        - name: keycloak-truststore
+          secret:
+            secretName: keycloak-truststore-secret
       dnsPolicy: ClusterFirst
       restartPolicy: Always

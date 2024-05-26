@@ -1,0 +1,78 @@
+{
+    "id": "game-auth",
+    "realm": "game-auth",
+    "enabled": true,
+    "sslRequired": "none",
+    "registrationAllowed": false,
+    "resetPasswordAllowed": false,
+    "verifyEmail": false,
+    "loginWithEmailAllowed": true,
+    "duplicateEmailsAllowed": false,
+    "accessTokenLifespan": 3600,
+    "ssoSessionIdleTimeout": 1800,
+    "ssoSessionMaxLifespan": 36000,
+    "offlineSessionIdleTimeout": 2592000,
+    "accessCodeLifespan": 60,
+    "accessCodeLifespanUserAction": 300,
+    "accessCodeLifespanLogin": 1800,
+    "actionTokenGeneratedByAdminLifespan": 43200,
+    "actionTokenGeneratedByUserLifespan": 300,
+    "clients": [
+      {
+        "clientId": "game-auth",
+        "surrogateAuthRequired": false,
+        "enabled": true,
+        "clientAuthenticatorType": "client-secret",
+        "secret": "secret",
+        "redirectUris": [
+          "*"
+        ],
+        "webOrigins": ["*"],
+        "notBefore": 0,
+        "bearerOnly": false,
+        "consentRequired": false,
+        "standardFlowEnabled": true,
+        "implicitFlowEnabled": false,
+        "directAccessGrantsEnabled": true,
+        "serviceAccountsEnabled": false,
+        "publicClient": false,
+        "frontchannelLogout": false,
+        "protocol": "openid-connect",
+        "attributes": {},
+        "fullScopeAllowed": true,
+        "nodeReRegistrationTimeout": -1,
+        "protocolMappers": [],
+        "defaultClientScopes": ["web-origins", "profile", "roles", "email"],
+        "optionalClientScopes": ["offline_access"]
+      }
+    ],
+    "roles": {
+      "realm": [
+        {
+          "name": "user",
+          "description": "A regular user",
+          "composite": false,
+          "clientRole": false,
+          "containerId": "game-auth"
+        }
+      ]
+    },
+    "users": [
+      {
+        "username": "exampleuser",
+        "enabled": true,
+        "emailVerified": false,
+        "firstName": "Example",
+        "lastName": "User",
+        "email": "exampleuser@example.com",
+        "realmRoles": ["user"],
+        "credentials": [
+          {
+            "type": "password",
+            "value": "password",
+            "temporary": false
+          }
+        ]
+      }
+    ]
+  }
