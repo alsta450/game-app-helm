@@ -6,7 +6,7 @@ metadata:
   labels:
     app: game-app
 spec:
-  replicas: 1  # You can adjust the number of replicas based on your requirements
+  replicas: 1
   selector:
     matchLabels:
       app: game-app
@@ -63,13 +63,5 @@ spec:
                 configMapKeyRef:
                   name: spring-config
                   key: DATABASE_URL
-          volumeMounts:
-            - name: keycloak-truststore
-              mountPath: /etc/ssl/certs
-              readOnly: true
-      volumes:
-        - name: keycloak-truststore
-          secret:
-            secretName: keycloak-truststore-secret
       dnsPolicy: ClusterFirst
       restartPolicy: Always

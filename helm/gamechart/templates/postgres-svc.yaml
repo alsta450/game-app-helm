@@ -9,7 +9,7 @@ metadata:
 spec:
   selector:
     app: postgres
-  type: LoadBalancer
+  type: {{ .Values.postgres.service.type}}
   ports:
     - name: http
       port: {{ .Values.postgres.containerPort}}

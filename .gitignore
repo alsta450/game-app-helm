@@ -9,3 +9,4 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform/providers/registry.opentofu.org
 kubeconfig
+.idea

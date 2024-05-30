@@ -5,6 +5,7 @@ metadata:
   namespace: keycloak
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
@@ -32,6 +33,13 @@ spec:
                 port:
                   number: {{ .Values.ingress.gameServicePort }}
           - path: {{ .Values.ingress.authPath }}
+            pathType: Prefix
+            backend:
+              service:
+                name: game-svc
+                port:
+                  number: {{ .Values.ingress.gameServicePort }}
+          - path: {{ .Values.ingress.cssPath }}
             pathType: Prefix
             backend:
               service:

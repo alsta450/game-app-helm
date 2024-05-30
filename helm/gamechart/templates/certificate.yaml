@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ich-spreche-darueber
+  namespace: keycloak
+spec:
+  secretName: ich-spreche-darueber
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: {{ .Values.ingress.host }}
+  dnsNames:
+    - {{ .Values.ingress.host }}
+    - {{ .Values.ingress.alternativeHost }}

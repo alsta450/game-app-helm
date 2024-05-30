@@ -65,9 +65,6 @@ spec:
           volumeMounts:
             - name: realm-config
               mountPath: /opt/keycloak/data/import
-            - name: tls-vol
-              mountPath: "/etc/tls"
-              readOnly: true
       volumes:
         - name: realm-config
           configMap:
@@ -75,6 +72,3 @@ spec:
             items:
               - key: realm.json
                 path: realm.json
-        - name: tls-vol
-          secret:
-            secretName: keycloak-certs-secret
