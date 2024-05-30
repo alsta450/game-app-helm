@@ -1,7 +1,7 @@
 # Secrets.yaml
 secrets:
   client:
-    secret: {{ .Values.CLIENT_SECRET }}
+    secret: "REPLACE_ME"
     id: "game-auth"
 
 # config-map.yaml
@@ -45,8 +45,8 @@ keycloak:
       cpu: 500m
       memory: 512Mi
   env:
-    admin: {{ .Values.KEYCLOAK_ADMIN }}
-    password: {{ .Values.KEYCLOAK_PASSWORD }}
+    admin: "REPLACE_ME"
+    password: "REPLACE_ME"
     proxy: "edge"
     dbUrl: "postgres-svc"
     db: "postgres"
@@ -61,8 +61,8 @@ keycloak:
 
 # postgres-spring-secrets.yaml
 postgres:
-  dbUser: {{ .Values.POSTGRES_DB_USER }}
-  dbPassword: {{ .Values.POSTGRES_DB_PASSWORD }}
+  dbUser: "REPLACE_ME"
+  dbPassword: "REPLACE_ME"
   containerPort: 5432
   service:
     type: ClusterIP
@@ -77,6 +77,5 @@ game:
 
 # Cluster Issuer
 clusterIssuer:
-  name: letsencrypt-prod
-  email: {{ .Values.CLUSTER_ISSUER_EMAIL }}
+  name: l"REPLACE_ME"
   server: "https://acme-v02.api.letsencrypt.org/directory"
