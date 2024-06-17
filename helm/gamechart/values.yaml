@@ -69,7 +69,7 @@ postgres:
 
 # game
 game:
-  image: game-app:0.4.4
+  image: game-app:2.1.0
   service:
     type: ClusterIP
     port: 8080

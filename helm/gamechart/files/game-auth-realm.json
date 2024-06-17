@@ -73,6 +73,70 @@
           "temporary": false
         }
       ]
+    },
+    {
+      "username": "alex",
+      "enabled": true,
+      "emailVerified": false,
+      "firstName": "Alex",
+      "lastName": "S",
+      "email": "alex@example.com",
+      "realmRoles": ["user"],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "lukas",
+      "enabled": true,
+      "emailVerified": false,
+      "firstName": "Lukas",
+      "lastName": "G",
+      "email": "lukas@example.com",
+      "realmRoles": ["user"],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "dennis",
+      "enabled": true,
+      "emailVerified": false,
+      "firstName": "Dennis",
+      "lastName": "F",
+      "email": "dennis@example.com",
+      "realmRoles": ["user"],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "thomas",
+      "enabled": true,
+      "emailVerified": false,
+      "firstName": "Thomas",
+      "lastName": "S",
+      "email": "thomas@example.com",
+      "realmRoles": ["user"],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
     }
   ]
 }
